@@ -12,7 +12,9 @@
 
 <table border="1">
     <tr th:each="invoise: ${invoises}">
-        <td th:text="${invoise.number}"></td>
+        <td >
+            <a th:href="@{/invoise/detail/{number}(number=${invoise.number})}" th:text="${invoise.number}"></a>
+        </td>
         <td th:text="${invoise.customerName}"></td>
     </tr>
 </table>

@@ -20,4 +20,9 @@ public class InvoiseRepository implements InvoiseRepositoryInterface {
     public List<Invoise> list() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public Invoise getInvoiseById(String number) {
+        throw new UnsupportedOperationException();
+    }
 }

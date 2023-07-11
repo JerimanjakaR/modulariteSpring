@@ -28,4 +28,13 @@ public class InvoiseRepositoryDatabase implements InvoiseRepositoryInterface {
         lists.add(invoise2);
         return lists;
     }
+
+    @Override
+    public Invoise getInvoiseById(String number) {
+        Invoise invoise1 = new Invoise();
+        invoise1.setNumber("NUM_112");
+        invoise1.setCustomerName("JIRAMA");
+        return invoise1;
+
+    }
 }

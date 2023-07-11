@@ -5,13 +5,15 @@ import company.invoise.core.entity.Invoise;
 import company.invoise.core.service.InvoiseServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 //@Component : permet d'indiquer que c'est un component
 @Controller
+@RequestMapping("/invoise")
 public class InvoiseControllerWeb implements InvoiseControllerInterface {
 
     @Autowired
@@ -35,12 +37,24 @@ public class InvoiseControllerWeb implements InvoiseControllerInterface {
         this.invoiseService = invoiseService;
     }
 
-    @RequestMapping("/invoise-home")
-    public @ModelAttribute("invoises") List<Invoise> displayInvoise(){
+    @RequestMapping("/home")
+    public String displayInvoise(Model model){
         System.out.println(" Afficher la liste des facturations existants ");
 
         List<Invoise> invoises = invoiseService.listInvoise();
 
-        return invoises;
+        model.addAttribute("invoises",invoises);
+
+        return "invoise-home";
+    }
+
+    @RequestMapping("/detail/{id}")
+    public  String displayDetailsInvoise(@PathVariable("id") String number, Model model){
+        System.out.println(" Afficher le details de facturations existants ");
+
+        Invoise invoise = invoiseService.getInvoiseById(number);
+        model.addAttribute("invoise", invoise);
+
+        return "invoise-detail.html";
     }
 }

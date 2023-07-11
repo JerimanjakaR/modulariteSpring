@@ -33,4 +33,9 @@ public class InvoiseService  implements InvoiseServiceInterface {
     public List<Invoise> listInvoise() {
         return invoiseRepository.list();
     }
+
+    @Override
+    public Invoise getInvoiseById(String number) {
+        return invoiseRepository.getInvoiseById(number);
+    }
 }
